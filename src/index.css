@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #254EED;    /* Primary blue */
+  --color-secondary: #3366FF;  /* Secondary blue */
+  --color-accent: #14B8A6;     /* Teal accent */
+  --color-surface: #F8FAFC;    /* Light surface */
+  --color-dark: #1A1F2B;       /* Deep blue gray */
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-dark-300 dark:via-dark-200 dark:to-dark-100 text-slate-900 dark:text-white min-h-screen font-sans;
+  }
+
+  ::selection {
+    @apply bg-accent-teal/20 dark:bg-accent-teal/30;
+  }
+
+  section {
+    @apply relative overflow-hidden py-20 sm:py-32;
+  }
+
+  h2 {
+    @apply text-4xl sm:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary-800 via-primary-700 to-primary-600 dark:from-primary-300 dark:via-primary-400 dark:to-primary-300 font-display;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl font-semibold text-primary-800 dark:text-primary-300 font-display;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-primary-100/30 shadow-xl hover:shadow-2xl transition-all duration-300;
+  }
+
+  .glass-dark {
+    @apply bg-dark-200/80 backdrop-blur-lg border border-primary-900/30 shadow-xl hover:shadow-2xl transition-all duration-300;
+  }
+
+  .glass-card {
+    @apply bg-white/90 dark:bg-dark-200/90 backdrop-blur-lg border border-primary-200/30 dark:border-primary-500/10 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl p-6;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-700 via-primary-600 to-accent-teal text-white shadow-lg shadow-primary-700/25 hover:shadow-xl hover:shadow-primary-600/30 hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-700/20 hover:border-primary-600/40 dark:border-primary-400/10 dark:hover:border-primary-400/20 text-primary-700 dark:text-primary-300 hover:bg-primary-50 dark:hover:bg-primary-900/30;
+  }
+
+  .section-title {
+    @apply text-center max-w-3xl mx-auto mb-16;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-primary-700 dark:text-primary-300 mt-4;
+  }
+
+  .card {
+    @apply glass-card hover:scale-[1.02] transition-all duration-300;
+  }
+
+  .card-title {
+    @apply text-xl font-semibold text-primary-800 dark:text-primary-300 mb-2 font-display;
+  }
+
+  .card-subtitle {
+    @apply text-sm text-primary-600 dark:text-primary-400;
+  }
+
+  .timeline-item {
+    @apply relative pl-8 pb-8 border-l-2 border-primary-700/20 dark:border-primary-400/20 last:border-0;
+  }
+
+  .timeline-dot {
+    @apply absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r from-primary-700 to-accent-teal dark:from-primary-400 dark:to-accent-teal;
+  }
+
+  .skill-badge {
+    @apply px-4 py-2 rounded-lg bg-primary-100/50 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 border border-primary-200/50 dark:border-primary-700/50 hover:scale-105 transition-transform;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-800 via-primary-700 to-accent-teal dark:from-primary-300 dark:via-primary-400 dark:to-accent-teal;
+  }
+
+  .text-gradient-hover {
+    @apply hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-primary-700 hover:via-primary-600 hover:to-accent-teal;
+  }
+
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(51, 102, 255, 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(51, 102, 255, 0.1) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+  }
+
+  .bg-mesh {
+    background: radial-gradient(circle at center, rgba(51, 102, 255, 0.15) 0%, transparent 70%);
+  }
+
+  .bg-morphing {
+    animation: morphing 20s ease-in-out infinite;
+    background-image: linear-gradient(45deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+    background-size: 200% 200%;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-shine {
+    animation: shine 8s ease-in-out infinite;
+  }
+}
+
+@keyframes morphing {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

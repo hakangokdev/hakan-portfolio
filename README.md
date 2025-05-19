@@ -92,6 +92,6 @@ MIT License
 ## Author
 
 Hakan Gök
-- LinkedIn: [hakangök](https://linkedin.com/in/gokhakan)
-- GitHub: [hakangök](https://github.com/hakangokdev)
+- LinkedIn: [mertpolat](https://linkedin.com/in/gokhakan)
+- GitHub: [mertpolat](https://github.com/hakangokdev)
 

@@ -1,22 +1,23 @@
 import { motion } from 'framer-motion';
-import { FiDatabase, FiLayers, FiCode } from 'react-icons/fi';
+// Added FiSmartphone for mobile, FiGitMerge for DevOps tools if needed, but FiLayers is good for full-stack
+import { FiLayers, FiCode, FiSmartphone } from 'react-icons/fi';
 
 const About = () => {
   const highlights = [
     {
       icon: <FiCode className="w-6 h-6" />,
-      title: 'Full-Stack Development',
-      description: 'Creating dynamic applications using modern JavaScript frameworks, C#, and Python with a strong focus on usability and maintainability.'
+      title: 'Frontend Development with React',
+      description: 'Building dynamic, responsive, and accessible user interfaces using React.js, JavaScript, and TypeScript with a focus on performance and user experience.'
     },
     {
-      icon: <FiLayers className="w-6 h-6" />,
-      title: 'Smart System Design',
-      description: 'Designing innovative systems like AI-based traffic light recognition for the visually impaired and smart IoT-based waste management solutions.'
+      icon: <FiLayers className="w-6 h-6" />, // FiLayers can represent the "stack"
+      title: 'Full-Stack Integration & DevOps',
+      description: 'Connecting frontend applications to robust backend APIs (MongoDB, MySQL). Proficient with Docker, Git, and modern deployment workflows for reliable applications.'
     },
     {
-      icon: <FiDatabase className="w-6 h-6" />,
-      title: 'Database and Data Handling',
-      description: 'Skilled in designing efficient database models, managing complex datasets, and using tools like SQL, Excel, and Pandas for effective data analysis.'
+      icon: <FiSmartphone className="w-6 h-6" />,
+      title: 'Mobile Innovation & Image Processing',
+      description: 'Developing Android applications using Java & Kotlin, featuring image processing with YOLO for impactful accessibility solutions, such as aiding visually impaired individuals.'
     }
   ];
 
@@ -38,21 +39,20 @@ const About = () => {
               transition={{ duration: 0.5 }}
             >
               <h3 className="text-2xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
-                Computer Programming Student & Developer
+                Full-Stack Developer
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-  I'm Hakan Gök, a passionate Full-Stack Developer with a strong foundation in the .NET ecosystem and hands-on experience in both frontend and backend technologies. My work reflects a deep commitment to writing clean, efficient code that serves real users — not just machines.
-</p>
-<p className="text-gray-600 dark:text-gray-300 mb-6">
-  I specialize in image processing and computer vision, particularly with OpenCV and Python. I've developed advanced systems for object detection, facial recognition, and visual analysis, often integrating AI and machine learning models to power smart, real-time solutions.
-</p>
-<p className="text-gray-600 dark:text-gray-300 mb-6">
-  On the frontend, I build user-friendly interfaces using React, while on the backend I deliver robust full-stack solutions using .NET Core and modern databases. I'm also experienced with tools like Docker, SPSS (for basic data analysis), and cross-platform mobile development with Java and Kotlin.
-</p>
-<p className="text-gray-600 dark:text-gray-300">
-  I thrive on continuous learning and staying updated with the latest technologies. Whether developing a real-time traffic light recognition system for visually impaired individuals, or a Library Management System in Java/Kotlin, I always aim to create meaningful and innovative software.
-</p>
-
+                I'm Hakan Gök, a dedicated Full-Stack Developer with a strong focus on frontend technologies and seamless backend integration. I primarily work with React.js, JavaScript, and TypeScript to build dynamic, responsive, and accessible user interfaces. On the backend, I integrate APIs using MongoDB and MySQL, ensuring smooth data flow and performance across the stack.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                My expertise lies in developing full-stack applications where the frontend and backend are tightly connected, delivering real-world functionality and clean, maintainable code. I’m experienced in using Docker, Git, and modern deployment workflows to ship reliable applications.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                In addition to my full-stack work, I have a background in Python and C# with a solid understanding of object-oriented programming (OOP). I've also developed Android mobile applications using Java and Kotlin, notably an accessibility-focused app leveraging YOLO for image processing to assist visually impaired individuals.
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                My passion lies in creating impactful solutions through modern web and mobile technologies, with a continuous drive to learn and innovate.
+              </p>
             </motion.div>
 
             <div className="grid gap-6">

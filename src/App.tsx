@@ -8,7 +8,8 @@ import Skills from './components/sections/Skills';
 import Publications from './components/sections/Publications';
 import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
-
+import Events from './components/sections/Events';
+import Education from './components/sections/Education';
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -40,7 +41,9 @@ function App() {
             <About />
             <Experience />
             <Skills />
+            <Events />
             <Publications />
+            <Education />
             <Contact />
           </main>
           <Footer />

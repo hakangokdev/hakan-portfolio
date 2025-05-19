@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FiBook, FiAward, FiCalendar, FiMapPin } from 'react-icons/fi';
 
@@ -13,44 +12,37 @@ interface EducationItem {
 
 const educationItems: EducationItem[] = [
   {
-    school: 'Anadolu University',
-    location: 'Eskisehir, Turkey',
-    degree: "Bachelor's Degree in Management Information Systems",
-    period: 'September 2023 - Present',
+    school: 'KTO Karatay Üniversitesi',
+    location: 'Konya, Turkey',
+    degree: "Associate Degree in Computer Programming",
+    period: 'September 2023 - June 2025',
     type: 'education'
   },
-  {
-    school: 'Duzce University',
-    location: 'Duzce, Turkey',
-    degree: 'Associate Degree in Computer Programming',
-    period: 'September 2021 - June 2023',
-    type: 'education'
-  }
 ];
 
-const certifications: EducationItem[] = [
-  {
-    school: 'Google',
-    degree: 'Google Cloud SecOps',
-    period: '2023',
-    type: 'certification',
-    location: 'Google Cloud'
-  },
-  {
-    school: 'Palo Alto Networks',
-    degree: 'Fundamentals of Cloud Security',
-    period: '2023',
-    type: 'certification',
-    location: 'Cloud Security'
-  },
-  {
-    school: 'Palo Alto Networks',
-    degree: 'Network Security Fundamentals',
-    period: '2023',
-    type: 'certification',
-    location: 'Network Security'
-  }
-];
+// const certifications: EducationItem[] = [
+//   {
+//     school: 'Google',
+//     degree: 'Google Cloud SecOps',
+//     period: '2023',
+//     type: 'certification',
+//     location: 'Google Cloud'
+//   },
+//   {
+//     school: 'Palo Alto Networks',
+//     degree: 'Fundamentals of Cloud Security',
+//     period: '2023',
+//     type: 'certification',
+//     location: 'Cloud Security'
+//   },
+//   {
+//     school: 'Palo Alto Networks',
+//     degree: 'Network Security Fundamentals',
+//     period: '2023',
+//     type: 'certification',
+//     location: 'Network Security'
+//   }
+// ];
 
 const Education = () => {
   return (
@@ -111,6 +103,7 @@ const Education = () => {
           </motion.div>
 
           {/* Certifications Section */}
+          {/* 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -155,10 +148,11 @@ const Education = () => {
               </motion.div>
             ))}
           </motion.div>
+          */}
         </div>
       </div>
     </section>
   );
 };
 
-export default Education; 
+export default Education;

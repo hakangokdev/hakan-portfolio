@@ -24,7 +24,9 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' },
+    { label: 'Events', href: '#events' },
     { label: 'Publications', href: '#publications' },
+    { label: 'Education', href: '#education' },
     { label: 'Contact', href: '#contact' },
   ];
 

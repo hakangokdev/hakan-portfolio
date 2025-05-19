@@ -17,7 +17,7 @@ interface MediumFeed {
   };
 }
 
-const MEDIUM_USERNAME = 'merttpolat';
+const MEDIUM_USERNAME = 'gokhakan';
 const RSS_URL = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -61,7 +61,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     console.log(`Found ${feed.rss.channel.item.length} articles`);
 
-    // Create the feed structure
+    // Create the feed structure without any filtering
     const formattedFeed = {
       rss: {
         channel: [{

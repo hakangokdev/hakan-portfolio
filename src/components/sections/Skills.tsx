@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiCode, FiDatabase, FiLayers, FiServer, FiGitBranch, FiMonitor, FiPackage, FiTool, FiCloud } from 'react-icons/fi';
+import { FiDatabase, FiLayers, FiServer, FiGitBranch, FiMonitor, FiTool, FiCloud } from 'react-icons/fi'; // FiSmartphone eklenmediği için FiTool kullanıldı
 
 interface SkillCategory {
   title: string;
@@ -11,22 +11,27 @@ const skillCategories: SkillCategory[] = [
   {
     title: 'Frontend Development',
     icon: <FiMonitor className="w-6 h-6" />,
-    skills: ['React', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Material UI', 'Bootstrap']
+    skills: ['React', 'TypeScript', 'JavaScript','Tailwind CSS','Vite']
   },
   {
-    title: 'Backend & Desktop Development',
+    title: 'Backend Development',
     icon: <FiServer className="w-6 h-6" />,
-    skills: ['.NET', 'C#', 'Python', 'Flask', 'ASP.NET', 'RESTful APIs', 'PyQt']
+    skills:  ['C#', 'Python', 'Flask', 'ASP.NET', 'RESTful APIs' , 'Axios APIs']
   },
   {
-    title: 'AI, Vision & Data Science',
+    title: 'Mobile Development', // Yeni kategori
+    icon: <FiTool className="w-6 h-6" />, // FiTool ikonu mobil için kullanıldı
+    skills: ['Java', 'Kotlin', 'Android Development' , 'Flutter' , 'React Native']
+  },
+  {
+    title: 'AI & Vision', // Başlık biraz daha sadeleştirildi
     icon: <FiLayers className="w-6 h-6" />,
-    skills: ['OpenCV', 'YOLO', 'TensorFlow', 'Scikit-learn', 'PyTorch', 'NumPy', 'Pandas', 'SPSS']
+    skills: ['OpenCV', 'YOLO', 'TensorFlow', 'Scikit-learn', 'PyTorch', 'NumPy', 'Pandas' , 'Keras' , "TensorFlow Lite"]
   },
   {
     title: 'Database Technologies',
     icon: <FiDatabase className="w-6 h-6" />,
-    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'SQLite']
+    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'SQLite' ,"MSSQL" ,"Supabase","Firebase"]
   },
   {
     title: 'DevOps & Deployment',
@@ -37,12 +42,8 @@ const skillCategories: SkillCategory[] = [
     title: 'Version Control',
     icon: <FiGitBranch className="w-6 h-6" />,
     skills: ['Git', 'GitHub', 'GitLab']
-  },
-  {
-    title: 'Other Tools',
-    icon: <FiTool className="w-6 h-6" />,
-    skills: ['SPSS', 'Redux', 'Vite', 'Webpack']
   }
+  // "Other Tools" kategorisi kaldırıldı, SPSS de oradan çıkarıldı.
 ];
 
 const Skills = () => {
@@ -57,7 +58,7 @@ const Skills = () => {
         >
           <h2 className="text-3xl font-bold mb-4 text-gradient">Skills & Expertise</h2>
           <p className="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Specialized in full-stack development, modern frameworks, and scalable architecture
+            Full-stack development, modern frameworks, and scalable architecture
           </p>
         </motion.div>
 

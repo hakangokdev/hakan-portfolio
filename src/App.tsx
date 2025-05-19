@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
-import Experience from './components/sections/Experience';
 import Skills from './components/sections/Skills';
 import Publications from './components/sections/Publications';
 import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
 import Events from './components/sections/Events';
 import Education from './components/sections/Education';
+import Projects from './components/sections/Projects';
+
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -39,7 +40,7 @@ function App() {
           <main>
             <Hero />
             <About />
-            <Experience />
+            <Projects />
             <Skills />
             <Events />
             <Publications />

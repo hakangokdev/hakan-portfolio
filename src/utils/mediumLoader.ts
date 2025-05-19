@@ -56,77 +56,95 @@ const getArticleEmoji = (title: string, content: string): string => {
   return '✍️'; // Daha genel bir blog yazısı emojisi
 };
 
+// XML string'ini JS nesnesine dönüştüren yardımcı fonksiyon
+const parseXML = (xmlString: string) => {
+  // Basit bir XML parser fonksiyonu
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+  
+  // RSS yapısını çıkartma
+  const items = xmlDoc.querySelectorAll('item');
+  const parsedItems = [];
+  
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const title = item.querySelector('title')?.textContent || '';
+    const link = item.querySelector('link')?.textContent || '';
+    const pubDate = item.querySelector('pubDate')?.textContent || '';
+    const description = item.querySelector('description')?.textContent || '';
+    const contentEncoded = item.querySelector('content\\:encoded')?.textContent || '';
+    const creator = item.querySelector('dc\\:creator')?.textContent || '';
+    
+    parsedItems.push({
+      title,
+      link,
+      pubDate,
+      description,
+      'content:encoded': contentEncoded,
+      'dc:creator': creator
+    });
+  }
+  
+  return parsedItems;
+};
+
 export const loadMediumArticles = async (): Promise<MediumArticle[]> => {
-  const MEDIUM_USERNAME_FOR_FILTER = 'gokhakan';
+  const MEDIUM_USERNAME = 'gokhakan';
+  const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${MEDIUM_USERNAME}`;
 
   try {
-    // API'den Medium makalelerini çek
-    const response = await fetch('/api/medium-feed', {
+    // Üçüncü parti RSS çevirici servis kullanarak CORS sorunlarını aşıyoruz
+    const response = await fetch(RSS_URL, {
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'Cache-Control': 'no-cache'
-      },
-      credentials: 'same-origin'
+        'Content-Type': 'application/json'
+      }
     });
     
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`[Medium Client] Fetch error: ${response.status}`);
+      console.error(`[Medium] Fetch error: ${response.status}`);
       throw new Error(`Failed to fetch Medium feed: ${response.status}`);
     }
 
-    const { feed } = await response.json();
-    if (!feed?.rss?.channel?.[0]?.item) {
-      console.error('[Medium Client] Invalid feed structure');
-      throw new Error('Invalid feed structure received');
+    const data = await response.json();
+    
+    if (!data?.items || !Array.isArray(data.items)) {
+      console.error('[Medium] Invalid feed structure');
+      return [];
     }
 
+    console.log(`[Medium] Found ${data.items.length} articles`);
+    
     const articles: MediumArticle[] = [];
     const processedLinks = new Set<string>();
-
-    const items = feed.rss.channel[0].item;
     
-    // Makaleleri işle
-    items.forEach((item: any) => {
+    // RSS2JSON formatındaki verileri işle
+    data.items.forEach((item: any) => {
       try {
-        const rawTitle = item.title?.[0];
-        const link = item.link?.[0];
-        const rawPubDate = item.pubDate?.[0];
-        const content = item['content:encoded']?.[0] || item.description?.[0] || '';
-        const creator = item['dc:creator']?.[0] || item['dc:creator'] || MEDIUM_USERNAME_FOR_FILTER; 
-
+        const title = item.title;
+        const link = item.link;
+        const pubDate = item.pubDate;
+        const content = item.content || item.description || '';
+        
         // Link gerekli, yoksa atla
         if (!link) {
           return;
         }
 
-        const title = rawTitle || "Untitled";
-
-        let displayPubDate: string;
-        let sortableDate: Date;
-
-        // Tarih bilgisini işle
-        if (rawPubDate) {
-          const dateObj = new Date(rawPubDate);
-          if (!isNaN(dateObj.getTime())) {
-            displayPubDate = dateObj.toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            });
-            sortableDate = dateObj;
-          } else {
-            displayPubDate = "Tarih yok";
-            sortableDate = new Date(0);
-          }
-        } else {
-          displayPubDate = "Tarih yok";
-          sortableDate = new Date(0);
-        }
-        
         // Her makaleyi bir kez ekle
         if (!processedLinks.has(link)) {
           processedLinks.add(link);
+          
+          const pubDateObj = new Date(pubDate);
+          const displayPubDate = !isNaN(pubDateObj.getTime()) 
+            ? pubDateObj.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })
+            : "Tarih yok";
+            
           const emoji = getArticleEmoji(title, content);
           
           articles.push({
@@ -136,13 +154,13 @@ export const loadMediumArticles = async (): Promise<MediumArticle[]> => {
             subtitle: extractSubtitle(content),
             link,
             pubDate: displayPubDate,
-            _sortableDate: sortableDate,
+            _sortableDate: !isNaN(pubDateObj.getTime()) ? pubDateObj : new Date(0),
             thumbnail: extractThumbnail(content),
             readingTime: extractReadingTime(content)
           });
         }
       } catch (itemError) {
-        // Process silently, no need to log every error
+        // Process silently
       }
     });
 
@@ -151,7 +169,8 @@ export const loadMediumArticles = async (): Promise<MediumArticle[]> => {
       b._sortableDate.getTime() - a._sortableDate.getTime()
     );
   } catch (error) {
-    console.error('[Medium Client] Error:', error);
-    throw error;
+    console.error('[Medium] Error:', error);
+    // Hata durumunda boş dizi döndür, böylece uygulama çalışmaya devam edebilir
+    return [];
   }
 };

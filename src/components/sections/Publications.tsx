@@ -35,7 +35,14 @@ const Publications = () => {
       try {
         setIsLoading(true);
         const mediumArticles = await loadMediumArticles();
-        setArticles(mediumArticles);
+        
+        if (mediumArticles.length === 0) {
+          console.warn("No Medium articles found - check the API response");
+          setError("Couldn't load Medium articles at this time");
+        } else {
+          setArticles(mediumArticles);
+          setError(null);
+        }
       } catch (err) {
         console.error("Error loading Medium articles:", err);
         setError("Failed to load Medium articles");
@@ -46,6 +53,11 @@ const Publications = () => {
 
     fetchArticles();
   }, []);
+
+  // Yükleme durumlarını daha iyi yönetmek için
+  const hasArticles = articles.length > 0;
+  const showError = error && !hasArticles;
+  const showEmptyState = !isLoading && !error && !hasArticles;
 
   return (
     <section id="publications">
@@ -64,9 +76,14 @@ const Publications = () => {
                 <div className="h-4 w-48 bg-gray-200 dark:bg-gray-700 rounded"></div>
               </div>
             </div>
-          ) : error ? (
-            <div className="text-center text-red-500 dark:text-red-400 py-8">
-              {error}
+          ) : showError ? (
+            <div className="text-center py-8">
+              <p className="text-red-500 dark:text-red-400 mb-2">{error}</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Please check back later</p>
+            </div>
+          ) : showEmptyState ? (
+            <div className="text-center py-8">
+              <p className="text-gray-600 dark:text-gray-400">No articles found at this time</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

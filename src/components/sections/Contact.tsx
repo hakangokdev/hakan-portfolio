@@ -54,7 +54,7 @@ const Contact = () => {
             className="mb-12"
           >
             <a
-              href="/resume/hakangok-cv.pdf"
+              href="/resume/hakangökcv.pdf"
               download
               className="inline-flex items-center gap-2 px-6 py-3 glass dark:glass-dark rounded-xl hover:scale-105 transition-transform"
             >

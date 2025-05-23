@@ -1,8 +1,12 @@
 # Hakan Gök - Portfolio Website
 
-A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
+A modern, responsive portfolio website showcasing my work as a software engineer.
 
-## Features
+## 🚀 Live Demo
+
+Visit my portfolio: [hakangok.tech](https://www.hakangok.tech/)
+
+## ✨ Features
 
 - 🌓 Dark/Light mode
 - 📱 Fully responsive design
@@ -12,7 +16,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - 📝 Contact form
 - 🔗 Social media integration
 
-## Tech Stack
+## 💻 Tech Stack
 
 - React 18+
 - TypeScript
@@ -22,7 +26,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 - React Icons
 - React Helmet Async
 
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
@@ -32,7 +36,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 1. Clone the repository
 ```bash
-git clone https://github.com/hakangokdev/hakan-portfolio.git
+git clone https://github.com/hakangokdev/portfolio.git
 cd portfolio
 ```
 
@@ -51,7 +55,7 @@ npm run dev
 npm run build
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
@@ -64,34 +68,32 @@ src/
 │       ├── About.tsx
 │       ├── Experience.tsx
 │       ├── Skills.tsx
-│       ├── Publications.tsx
-│       ├── Education.tsx
+│       ├── Projects.tsx
 │       └── Contact.tsx
 ├── App.tsx
 └── main.tsx
 ```
 
-## Customization
+## 🔧 Customization
 
 1. Update personal information in each component
 2. Modify color scheme in `tailwind.config.js`
 3. Add/remove sections as needed
 4. Update social media links
 
-## Deployment
+## 🚀 Deployment
 
 The site can be deployed on platforms like:
 - Vercel
 - Netlify
 - GitHub Pages
 
-## License
+## 📄 License
 
 MIT License
 
-## Author
+## 👨‍💻 Author
 
 Hakan Gök
-- LinkedIn: [mertpolat](https://linkedin.com/in/gokhakan)
-- GitHub: [mertpolat](https://github.com/hakangokdev)
-
+- LinkedIn: [gokhakan](https://linkedin.com/in/gokhakan)
+- GitHub: [hakangokdev](https://github.com/hakangokdev)

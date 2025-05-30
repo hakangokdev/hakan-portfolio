@@ -11,27 +11,9 @@ interface SEOData {
 const seoData: { [key: string]: SEOData } = {
   '/': {
     title: 'Hakan Gök | Full-Stack Software Engineer - React.js & JavaScript Uzmanı',
-    description: 'Hakan Gök - Full-Stack Software Engineer. React.js, JavaScript, TypeScript, MongoDB, MySQL. Ankara merkezli yazılım geliştirici ve mobil uygulama uzmanı.',
-    keywords: 'Hakan Gök, yazılım mühendisi, software engineer, React developer, full-stack developer, JavaScript, TypeScript, MongoDB, MySQL, Android developer, Ankara yazılım geliştiricisi',
+    description: 'Hakan Gök - Full-Stack Software Engineer. React.js, JavaScript, TypeScript, MongoDB, MySQL. Konya merkezli yazılım geliştirici ve mobil uygulama uzmanı.',
+    keywords: 'Hakan Gök, yazılım mühendisi, software engineer, React developer, full-stack developer, JavaScript, TypeScript, MongoDB, MySQL, Android developer, Konya yazılım geliştiricisi',
     canonical: 'https://hakangok.dev/'
-  },
-  '/#about': {
-    title: 'Hakkımda | Hakan Gök - Full-Stack Software Engineer',
-    description: 'Hakan Gök hakkında bilgi. Full-Stack geliştirici olarak React.js, JavaScript, TypeScript, MongoDB ve MySQL teknolojilerinde uzmanım.',
-    keywords: 'Hakan Gök hakkında, full-stack developer, React.js uzmanı, JavaScript developer, TypeScript, MongoDB, MySQL',
-    canonical: 'https://hakangok.dev/#about'
-  },
-  '/#projects': {
-    title: 'Projeler | Hakan Gök - Software Engineer Projeleri',
-    description: 'Hakan Gök\'ün geliştirdiği yazılım projeleri. React.js, JavaScript, TypeScript, mobil uygulama geliştirme projeleri.',
-    keywords: 'Hakan Gök projeleri, React projeleri, JavaScript projeleri, TypeScript projeleri, mobil uygulama projeleri',
-    canonical: 'https://hakangok.dev/#projects'
-  },
-  '/#contact': {
-    title: 'İletişim | Hakan Gök - Software Engineer',
-    description: 'Hakan Gök ile iletişime geçin. Full-Stack geliştirici ve mobil uygulama uzmanı olarak projeleriniz için destek alın.',
-    keywords: 'Hakan Gök iletişim, yazılım geliştirici iletişim, React developer hire, freelance developer',
-    canonical: 'https://hakangok.dev/#contact'
   }
 };
 
@@ -39,8 +21,8 @@ export const useSEO = () => {
   const location = useLocation();
   
   useEffect(() => {
-    const currentPath = location.pathname + location.hash;
-    const currentSEO = seoData[currentPath] || seoData['/'];
+    // For SPA, always use the main page SEO data
+    const currentSEO = seoData['/'];
     
     // Update title
     document.title = currentSEO.title;
@@ -84,6 +66,6 @@ export const useSEO = () => {
   }, [location]);
   
   return {
-    currentSEO: seoData[location.pathname + location.hash] || seoData['/']
+    currentSEO: seoData['/']
   };
 }; 

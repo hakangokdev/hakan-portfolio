@@ -27,14 +27,8 @@ export default defineConfig({
     },
     // Optimize chunk sizes
     chunkSizeWarningLimit: 1000,
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true,
-      },
-    },
+    // Use esbuild for faster minification (default)
+    minify: 'esbuild',
     // Source maps for debugging (optional in production)
     sourcemap: false,
   },
@@ -46,5 +40,9 @@ export default defineConfig({
   define: {
     __SITE_URL__: JSON.stringify('https://hakangok.dev'),
     __SITE_NAME__: JSON.stringify('Hakan Gök Portfolio'),
+  },
+  // ESBuild optimization for production
+  esbuild: {
+    drop: ['console', 'debugger'], // Remove console.logs and debugger statements
   },
 })

@@ -17,7 +17,7 @@ Allow: *.svg
 Allow: *.webp
 
 # Sitemap location
-Sitemap: https://hakangok.dev/sitemap.xml
+Sitemap: https://www.hakangok.tech/sitemap.xml
 
 # Crawl delay (optional - helps with server load)
 Crawl-delay: 1 

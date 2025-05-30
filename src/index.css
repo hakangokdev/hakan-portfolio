@@ -2,6 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* SEO and Performance Optimizations */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve text rendering for better readability */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  @apply bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-dark-300 dark:via-dark-200 dark:to-dark-100 text-slate-900 dark:text-white min-h-screen font-sans;
+}
+
+/* Skip link for accessibility and SEO */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Focus indicators for better accessibility */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Image optimization for better loading */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Lazy loading improvements */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
 :root {
   --color-primary: #254EED;    /* Primary blue */
   --color-secondary: #3366FF;  /* Secondary blue */
@@ -11,10 +62,6 @@
 }
 
 @layer base {
-  body {
-    @apply bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-dark-300 dark:via-dark-200 dark:to-dark-100 text-slate-900 dark:text-white min-h-screen font-sans;
-  }
-
   ::selection {
     @apply bg-accent-teal/20 dark:bg-accent-teal/30;
   }

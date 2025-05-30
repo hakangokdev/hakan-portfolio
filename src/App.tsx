@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer';
 import Events from './components/sections/Events';
 import Education from './components/sections/Education';
 import Projects from './components/sections/Projects';
+import SEOWrapper from './components/SEO/SEOWrapper';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <Router>
+      <SEOWrapper />
       <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
         <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
           <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />

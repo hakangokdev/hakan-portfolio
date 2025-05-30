@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Disallow crawling of development files
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: *.json
+Disallow: *.ts
+Disallow: *.tsx
+
+# Allow all image formats
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.png
+Allow: *.gif
+Allow: *.svg
+Allow: *.webp
+
+# Sitemap location
+Sitemap: https://hakangok.dev/sitemap.xml
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1 

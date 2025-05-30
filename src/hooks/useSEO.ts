@@ -13,7 +13,7 @@ const seoData: { [key: string]: SEOData } = {
     title: 'Hakan Gök | Full-Stack Software Engineer - React.js & JavaScript Uzmanı',
     description: 'Hakan Gök - Full-Stack Software Engineer. React.js, JavaScript, TypeScript, MongoDB, MySQL. Konya merkezli yazılım geliştirici ve mobil uygulama uzmanı.',
     keywords: 'Hakan Gök, yazılım mühendisi, software engineer, React developer, full-stack developer, JavaScript, TypeScript, MongoDB, MySQL, Android developer, Konya yazılım geliştiricisi',
-    canonical: 'https://hakangok.dev/'
+    canonical: 'https://www.hakangok.tech/'
   }
 };
 

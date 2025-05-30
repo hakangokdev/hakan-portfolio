@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my work as a Full-Stack Softwa
 
 ## 🚀 Live Demo
 
-Visit my portfolio: [hakangok.dev](https://www.hakangok.dev/)
+Visit my portfolio: [hakangok.tech](https://www.hakangok.tech/)
 
 ## ✨ Features
 
@@ -130,7 +130,7 @@ public/
 
 ### Google Search Console Setup
 1. Add your verification code to `index.html`
-2. Submit sitemap: `https://hakangok.dev/sitemap.xml`
+2. Submit sitemap: `https://www.hakangok.tech/sitemap.xml`
 3. Monitor performance and indexing status
 
 ### Google Analytics (Optional)
@@ -183,9 +183,9 @@ public/
 
 ## 🔗 Important Links
 
-- **Primary Domain:** https://hakangok.dev
-- **Sitemap:** https://hakangok.dev/sitemap.xml
-- **Robots.txt:** https://hakangok.dev/robots.txt
+- **Primary Domain:** https://www.hakangok.tech
+- **Sitemap:** https://www.hakangok.tech/sitemap.xml
+- **Robots.txt:** https://www.hakangok.tech/robots.txt
 
 ## 📄 License
 
@@ -196,10 +196,10 @@ MIT License
 **Hakan Gök** - Full-Stack Software Engineer  
 Specializing in React.js, JavaScript, TypeScript, MongoDB, MySQL
 
-- 🌍 **Website:** [hakangok.dev](https://hakangok.dev)
+- 🌍 **Website:** [hakangok.tech](https://www.hakangok.tech)
 - 💼 **LinkedIn:** [gokhakan](https://linkedin.com/in/gokhakan)
 - 🐙 **GitHub:** [hakangokdev](https://github.com/hakangokdev)
-- 📧 **Email:** [Contact through website](https://hakangok.dev/#contact)
+- 📧 **Email:** [Contact through website](https://www.hakangok.tech/#contact)
 - 📍 **Location:** Ankara, Turkey
 
 ---

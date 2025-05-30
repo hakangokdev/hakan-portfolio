@@ -38,7 +38,7 @@ export default defineConfig({
   },
   // Define environment variables for SEO
   define: {
-    __SITE_URL__: JSON.stringify('https://hakangok.dev'),
+    __SITE_URL__: JSON.stringify('https://www.hakangok.tech'),
     __SITE_NAME__: JSON.stringify('Hakan Gök Portfolio'),
   },
   // ESBuild optimization for production

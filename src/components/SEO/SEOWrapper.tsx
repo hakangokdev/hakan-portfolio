@@ -13,8 +13,8 @@ const SEOWrapper: React.FC<SEOProps> = ({
   title = "Hakan Gök | Full-Stack Software Engineer - React.js & JavaScript Uzmanı",
   description = "Hakan Gök - Full-Stack Software Engineer. React.js, JavaScript, TypeScript, MongoDB, MySQL. Konya merkezli yazılım geliştirici ve mobil uygulama uzmanı.",
   keywords = "Hakan Gök, yazılım mühendisi, software engineer, React developer, full-stack developer, JavaScript, TypeScript, MongoDB, MySQL, Android developer, Konya yazılım geliştiricisi, web developer",
-  image = "https://hakangok.dev/events-photos/profile-photo.jpeg",
-  url = "https://hakangok.dev",
+  image = "https://www.hakangok.tech/events-photos/profile-photo.jpeg",
+  url = "https://www.hakangok.tech",
   type = "website"
 }) => {
   return (

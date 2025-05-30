@@ -80,7 +80,7 @@ const Hero = () => {
                 Full-Stack Software Engineer
               </h2>
               <p className="text-lg text-primary-700 dark:text-primary-300 mt-4">
-                React.js, JavaScript, TypeScript, MongoDB, MySQL uzmanı. Ankara merkezli yazılım geliştirici ve mobil uygulama geliştiricisi.
+              Passionate about creating elegant solutions to complex problems through innovative software development
               </p>
             </div>
           </motion.div>

@@ -15,6 +15,15 @@ export interface GitHubRepo {
   emoji: string;
 }
 
+// Pagination response interface
+export interface GitHubReposResponse {
+  repos: GitHubRepo[];
+  currentPage: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
 // GitHub reposunu kategorilerine göre emoji atar
 const getRepoEmoji = (name: string, description: string, language: string | null, topics: string[]): string => {
   const nameLower = (name || "").toLowerCase();
@@ -79,14 +88,42 @@ const containsAny = (name: string, desc: string, topics: string, keywords: strin
   );
 };
 
-// GitHub repolarını çekip formatlar
-export const loadGitHubRepos = async (): Promise<GitHubRepo[]> => {
+// GitHub'dan Link header'ını parse ederek pagination bilgisi çıkarır
+const parseLinkHeader = (linkHeader: string): { hasNext: boolean, hasPrev: boolean, lastPage?: number } => {
+  const links = linkHeader.split(',');
+  let hasNext = false;
+  let hasPrev = false;
+  let lastPage: number | undefined;
+
+  links.forEach(link => {
+    const [url, rel] = link.split(';');
+    if (rel && rel.includes('rel="next"')) {
+      hasNext = true;
+    }
+    if (rel && rel.includes('rel="prev"')) {
+      hasPrev = true;
+    }
+    if (rel && rel.includes('rel="last"')) {
+      const pageMatch = url.match(/page=(\d+)/);
+      if (pageMatch) {
+        lastPage = parseInt(pageMatch[1]);
+      }
+    }
+  });
+
+  return { hasNext, hasPrev, lastPage };
+};
+
+// GitHub repolarını gerçek pagination ile çekip formatlar
+export const loadGitHubRepos = async (page: number = 1): Promise<GitHubReposResponse> => {
   try {
     const GITHUB_USERNAME = 'hakangokdev';
-    const directApiUrl = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=100`;
     
-    console.log('[GitHub] Fetching repositories directly from GitHub API');
-    const response = await fetch(directApiUrl, {
+    // GitHub API'ye page ve per_page=6 parametresi ile istek at
+    const apiUrl = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&page=${page}&per_page=6`;
+    
+    console.log(`[GitHub] Fetching page ${page} with 6 repos per page`);
+    const response = await fetch(apiUrl, {
       headers: {
         'Accept': 'application/vnd.github.v3+json'
       }
@@ -102,50 +139,82 @@ export const loadGitHubRepos = async (): Promise<GitHubRepo[]> => {
       throw new Error('Invalid GitHub API response');
     }
     
-    console.log(`[GitHub] Found ${data.length} repositories from GitHub API`);
+    // Link header'ından pagination bilgisini çıkar
+    const linkHeader = response.headers.get('Link');
+    let hasNextPage = false;
+    let hasPrevPage = false;
+    let totalPages = page; // En az current page kadar var
+    
+    if (linkHeader) {
+      const { hasNext, hasPrev, lastPage } = parseLinkHeader(linkHeader);
+      hasNextPage = hasNext;
+      hasPrevPage = hasPrev;
+      if (lastPage) {
+        totalPages = lastPage;
+      }
+    }
+    
+    // Eğer current page'de repo yoksa ve page 1'den büyükse, hasNext false olmalı
+    if (data.length === 0 && page > 1) {
+      hasNextPage = false;
+    }
     
     // Fork'lanmamış repoları filtrele
-    const repos: GitHubRepo[] = data
-      .filter((repo: any) => !repo.fork)
-      .map((repo: any) => {
-        const updatedDate = new Date(repo.updated_at);
-        const emoji = getRepoEmoji(
-          repo.name, 
-          repo.description || '', 
-          repo.language,
-          repo.topics || []
-        );
-        
-        return {
-          id: repo.id.toString(),
-          name: repo.name,
-          fullName: repo.full_name,
-          description: repo.description || 'No description provided',
-          url: repo.html_url,
-          homepage: repo.homepage,
-          stars: repo.stargazers_count,
-          forks: repo.forks_count,
-          language: repo.language,
-          updatedAt: updatedDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          }),
-          createdAt: new Date(repo.created_at).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          }),
-          topics: repo.topics || [],
-          _sortableDate: updatedDate,
-          emoji
-        };
-      })
-      .sort((a: GitHubRepo, b: GitHubRepo) => b._sortableDate.getTime() - a._sortableDate.getTime());
+    const nonForkRepos = data.filter((repo: any) => !repo.fork);
+    
+    console.log(`[GitHub] Found ${data.length} repositories, ${nonForkRepos.length} non-forked on page ${page}`);
+    
+    // Repoları formatla
+    const repos: GitHubRepo[] = nonForkRepos.map((repo: any) => {
+      const updatedDate = new Date(repo.updated_at);
+      const emoji = getRepoEmoji(
+        repo.name, 
+        repo.description || '', 
+        repo.language,
+        repo.topics || []
+      );
       
-    return repos;
+      return {
+        id: repo.id.toString(),
+        name: repo.name,
+        fullName: repo.full_name,
+        description: repo.description || 'No description provided',
+        url: repo.html_url,
+        homepage: repo.homepage,
+        stars: repo.stargazers_count,
+        forks: repo.forks_count,
+        language: repo.language,
+        updatedAt: updatedDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }),
+        createdAt: new Date(repo.created_at).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }),
+        topics: repo.topics || [],
+        _sortableDate: updatedDate,
+        emoji
+      };
+    });
+      
+    return {
+      repos,
+      currentPage: page,
+      totalPages,
+      hasNextPage,
+      hasPrevPage
+    };
   } catch (error) {
     console.error('[GitHub] Error fetching repositories:', error);
-    return [];
+    return {
+      repos: [],
+      currentPage: page,
+      totalPages: 0,
+      hasNextPage: false,
+      hasPrevPage: false
+    };
   }
 }; 

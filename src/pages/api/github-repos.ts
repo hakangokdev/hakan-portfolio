@@ -21,6 +21,43 @@ interface GitHubRepo {
   topics: string[];
 }
 
+// Response tipi
+interface PaginatedResponse {
+  repositories: GitHubRepo[];
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}
+
+// GitHub'dan Link header'ını parse ederek pagination bilgisi çıkarır
+const parseLinkHeader = (linkHeader: string): { hasNext: boolean, hasPrev: boolean, lastPage?: number } => {
+  const links = linkHeader.split(',');
+  let hasNext = false;
+  let hasPrev = false;
+  let lastPage: number | undefined;
+
+  links.forEach(link => {
+    const [url, rel] = link.split(';');
+    if (rel && rel.includes('rel="next"')) {
+      hasNext = true;
+    }
+    if (rel && rel.includes('rel="prev"')) {
+      hasPrev = true;
+    }
+    if (rel && rel.includes('rel="last"')) {
+      const pageMatch = url.match(/page=(\d+)/);
+      if (pageMatch) {
+        lastPage = parseInt(pageMatch[1]);
+      }
+    }
+  });
+
+  return { hasNext, hasPrev, lastPage };
+};
+
 const GITHUB_USERNAME = 'hakangokdev'; 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''; // Eğer varsa token kullan
 
@@ -36,9 +73,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    console.log(`[GitHub API] Fetching repositories for @${GITHUB_USERNAME}`);
+    // Query parametrelerini al
+    const page = parseInt(req.query.page as string) || 1;
     
-    // API çağrısı
+    console.log(`[GitHub API] Fetching repositories for @${GITHUB_USERNAME}, page ${page} with 6 repos per page`);
+    
+    // API çağrısı - page ve per_page=6 ile
     const headers: HeadersInit = {
       'Accept': 'application/vnd.github.v3+json',
     };
@@ -49,7 +89,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
     
     const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=100`,
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&page=${page}&per_page=6`,
       { headers }
     );
 
@@ -65,12 +105,37 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       throw new Error('Invalid API response structure');
     }
 
+    // Link header'ından pagination bilgisini çıkar
+    const linkHeader = response.headers.get('Link');
+    let hasNextPage = false;
+    let hasPrevPage = false;
+    let totalPages = page; // En az current page kadar var
+    
+    if (linkHeader) {
+      const { hasNext, hasPrev, lastPage } = parseLinkHeader(linkHeader);
+      hasNextPage = hasNext;
+      hasPrevPage = hasPrev;
+      if (lastPage) {
+        totalPages = lastPage;
+      }
+    }
+
     // Fork'lanmamış repoları filtrele
     const filteredRepos = data.filter((repo: GitHubRepo) => !repo.fork);
     
-    console.log(`[GitHub API] Found ${data.length} repositories, ${filteredRepos.length} non-forked`);
+    console.log(`[GitHub API] Found ${data.length} repositories, ${filteredRepos.length} non-forked on page ${page}`);
 
-    return res.status(200).json({ repositories: filteredRepos });
+    const paginatedResponse: PaginatedResponse = {
+      repositories: filteredRepos,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        hasNextPage,
+        hasPrevPage
+      }
+    };
+
+    return res.status(200).json(paginatedResponse);
   } catch (error) {
     console.error('[GitHub API] Error:', error);
     return res.status(500).json({ error: 'Failed to fetch GitHub repositories' });

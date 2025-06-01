@@ -5,7 +5,6 @@ A modern, responsive portfolio website showcasing my work as a Full-Stack Softwa
 ## 🚀 Live Demo
 
 Visit my portfolio: [hakangok.tech](https://www.hakangok.tech/)
-![Image](https://github.com/user-attachments/assets/6a04dbdc-471a-4445-ba91-6f860be266fd)
 
 ## ✨ Features
 

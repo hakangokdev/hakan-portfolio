@@ -5,6 +5,7 @@ A modern, responsive portfolio website showcasing my work as a Full-Stack Softwa
 ## 🚀 Live Demo
 
 Visit my portfolio: [hakangok.tech](https://www.hakangok.tech/)
+![Image](https://github.com/user-attachments/assets/6a04dbdc-471a-4445-ba91-6f860be266fd)
 
 ## ✨ Features
 
@@ -18,6 +19,9 @@ Visit my portfolio: [hakangok.tech](https://www.hakangok.tech/)
 - ♿ Accessibility compliant (WCAG 2.1)
 - 🗺️ XML Sitemap for search engines
 - 🤖 Robots.txt for crawler guidance
+- 🔄 **Dynamic content loading via APIs**
+- 📊 **Real-time GitHub projects integration**
+- 📰 **Live Medium blog posts integration**
 
 ## 🔍 SEO Optimizations
 
@@ -38,7 +42,7 @@ Visit my portfolio: [hakangok.tech](https://www.hakangok.tech/)
 - ✅ Fast loading times (<3s)
 
 ### Targeted Keywords
-Primary keywords: `Hakan Gök`, `Full-Stack Software Engineer`, `React.js Developer`, `JavaScript Developer`, `TypeScript`, `MongoDB`, `MySQL`, `Ankara yazılım geliştirici`
+Primary keywords: `Hakan Gök`, `Full-Stack Software Engineer`, `React.js Developer`, `JavaScript Developer`, `TypeScript`, `MongoDB`, `MySQL`, `Konya yazılım geliştirici`
 
 ### Performance Metrics
 - 🚀 Lighthouse Score: 95+ (Performance, SEO, Accessibility)
@@ -46,15 +50,33 @@ Primary keywords: `Hakan Gök`, `Full-Stack Software Engineer`, `React.js Develo
 - 📱 Mobile-first responsive design
 - 🔄 Code splitting for optimized loading
 
+## 🌐 Dynamic Content Integration
+
+### GitHub API Integration
+- **Real-time Projects Display:** Automatically fetches and displays latest repositories from GitHub
+- **Live Repository Data:** Shows stars, forks, languages, and descriptions
+- **Automatic Updates:** Projects section updates dynamically without manual intervention
+- **Repository Filtering:** Smart filtering to showcase relevant projects
+
+### Medium API Integration
+- **Live Blog Posts:** Automatically fetches latest articles from Medium profile
+- **Dynamic Publications:** Publications section displays current blog content
+- **Article Metadata:** Shows publication dates, reading time, and engagement metrics
+- **Content Synchronization:** Keeps portfolio blog section up-to-date with Medium posts
+
 ## 💻 Tech Stack
 
 - **Frontend:** React 18+, TypeScript, Tailwind CSS
+- **APIs:** GitHub REST API, Medium RSS API
+- **State Management:** React Hooks, Context API
+- **HTTP Client:** Axios/Fetch for API calls
 - **Animations:** Framer Motion
 - **Routing:** React Router DOM
 - **SEO:** React Helmet Async
 - **Icons:** React Icons
 - **Build Tool:** Vite with optimization plugins
 - **Performance:** Code splitting, lazy loading, image optimization
+- **Data Fetching:** Real-time API integration with error handling
 
 ## 🛠️ Getting Started
 
@@ -108,13 +130,21 @@ src/
 │   │   ├── Experience.tsx
 │   │   ├── Hero.tsx
 │   │   ├── Leadership.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Publications.tsx
+│   │   ├── Projects.tsx          // GitHub API integration
+│   │   ├── Publications.tsx      // Medium API integration
 │   │   └── Skills.tsx
 │   └── SEO/
 │       └── SEOWrapper.tsx
 ├── hooks/
-│   └── useSEO.ts
+│   ├── useSEO.ts
+│   ├── useGitHub.ts             // GitHub API hook
+│   └── useMedium.ts             // Medium API hook
+├── services/
+│   ├── githubApi.ts             // GitHub API service
+│   └── mediumApi.ts             // Medium API service
+├── types/
+│   ├── github.ts                // GitHub API types
+│   └── medium.ts                // Medium API types
 ├── pages/
 ├── utils/
 ├── App.tsx
@@ -124,6 +154,29 @@ public/
 ├── sitemap.xml
 ├── robots.txt
 └── google-site-verification.html
+```
+
+## 🔧 API Configuration
+
+### GitHub API Setup
+- Fetches public repositories automatically
+- Displays repository metadata (stars, forks, language)
+- Filters repositories based on relevance
+- Handles rate limiting and error states
+
+### Medium RSS Integration
+- Fetches latest blog posts from Medium profile
+- Parses RSS feed for article metadata
+- Displays publication dates and descriptions
+- Handles CORS and feed parsing
+
+### Environment Variables
+```bash
+# Optional: GitHub Personal Access Token for higher rate limits
+VITE_GITHUB_TOKEN=your_github_token
+
+# Medium RSS Feed URL
+VITE_MEDIUM_RSS_URL=https://medium.com/feed/@yourusername
 ```
 
 ## 🔧 SEO Configuration
@@ -152,6 +205,7 @@ public/
 - [ ] Run Lighthouse audit (aim for 95+ SEO score)
 - [ ] Validate structured data markup
 - [ ] Check mobile responsiveness
+- [ ] Test API integrations and error handling
 
 ### Recommended Hosting
 - **Vercel** (recommended for optimal performance)
@@ -180,12 +234,15 @@ public/
 - Page loading speed
 - Mobile usability scores
 - Social media engagement
+- API response times and error rates
 
 ## 🔗 Important Links
 
 - **Primary Domain:** https://www.hakangok.tech
 - **Sitemap:** https://www.hakangok.tech/sitemap.xml
 - **Robots.txt:** https://www.hakangok.tech/robots.txt
+- **GitHub Profile:** https://github.com/hakangokdev
+- **Medium Profile:** https://medium.com/@hakangok
 
 ## 📄 License
 
@@ -204,5 +261,5 @@ Specializing in React.js, JavaScript, TypeScript, MongoDB, MySQL
 
 ---
 
-*Portfolio optimized for search engines and designed to showcase Full-Stack development expertise in React.js, JavaScript, TypeScript, and mobile application development.*
+*Portfolio with dynamic content integration, optimized for search engines and designed to showcase Full-Stack development expertise in React.js, JavaScript, TypeScript, API integrations, and mobile application development.*
 

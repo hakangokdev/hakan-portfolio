@@ -200,7 +200,7 @@ Specializing in React.js, JavaScript, TypeScript, MongoDB, MySQL
 - 💼 **LinkedIn:** [gokhakan](https://linkedin.com/in/gokhakan)
 - 🐙 **GitHub:** [hakangokdev](https://github.com/hakangokdev)
 - 📧 **Email:** [Contact through website](https://www.hakangok.tech/#contact)
-- 📍 **Location:** Ankara, Turkey
+- 📍 **Location:** Konya, Turkey
 
 ---
 

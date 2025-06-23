@@ -8,6 +8,7 @@ interface EducationItem {
   period: string;
   type: 'education' | 'certification';
   logo?: string;
+  achievement?: string;
 }
 
 const educationItems: EducationItem[] = [
@@ -16,7 +17,8 @@ const educationItems: EducationItem[] = [
     location: 'Konya, Turkey',
     degree: "Associate Degree in Computer Programming",
     period: 'September 2023 - June 2025',
-    type: 'education'
+    type: 'education',
+    achievement: 'Ranked 1st in Department'
   },
 ];
 
@@ -86,6 +88,14 @@ const Education = () => {
                     <p className="card-subtitle flex items-center gap-2">
                       {item.school}
                     </p>
+                    {item.achievement && (
+                      <div className="flex items-center gap-2 mt-2">
+                        <FiAward className="w-4 h-4 text-yellow-600 dark:text-yellow-400" />
+                        <span className="text-sm font-medium text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/30 px-2 py-1 rounded-full">
+                          {item.achievement}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-4 text-sm text-blue-800 dark:text-blue-400">

@@ -16,6 +16,19 @@ interface EventData {
 const events: EventData[] = [
   {
     id: '1',
+    title: 'Computer Programming Associate Degree - Graduated as Top of Department',
+    description: '🎓 Successfully completed my Associate Degree in Computer Programming at KTO Karatay University, graduating as the top student in my department. This 2-year journey has been an incredible learning experience in software development, programming fundamentals, and technology innovation. Grateful for the knowledge gained from distinguished professors and the support of family and peers throughout this academic achievement. Ready to apply this foundation to advance my career in software development.',
+    date: 'December 2024',
+    location: 'Konya, Turkey',
+    coverImage: '/events-photos/mezuniyet-1.jpg',
+    galleryImages: [
+      '/events-photos/mezuniyet-1.jpg',
+      '/events-photos/mezuniyet-2.jpg'
+    ],
+    link: 'https://www.linkedin.com/posts/gokhakan_mezuniyet-bilgisayarprogramcaftlaftafbaft-activity-7341739453473779714-E7K7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE6SViYBNbIy1pbORdZxO8Xdedps2g3jRac'
+  },
+  {
+    id: '2',
     title: '1st Place: Kapsül Web Hackathon 2025',
     description: '🚀 Secured 1st place with team "404 (Dört Sıfır Dört)" (Teammates: Rafet Kaya, Samet Kuku) in the Kapsül Web Hackathon 2025. This 9-hour event, hosted by KTÜN Software Development Community and Kapsül Teknoloji Platform, focused on developing original and functional web projects. 🏆 An invaluable experience in rapid development, collaborative problem-solving, and effective time management.',
     date: 'May 2025', // Please verify, LinkedIn post for a similar achievement is Feb 2024
@@ -29,7 +42,7 @@ const events: EventData[] = [
     link: 'https://www.linkedin.com/posts/gokhakan_hackathon-ba%C5%9Far%C4%B1s%C4%B1-yaz%C4%B1l%C4%B1m-geli%C5%9Ftirme-activity-7327059867200811008-NODt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE6SViYBNbIy1pbORdZxO8Xdedps2g3jRac'
   },
   {
-    id: '2',
+    id: '3',
     title: 'Konya 1st AI Summit – Participant',
     description: 'Joined the inaugural Konya Artificial Intelligence Summit, organized by the Artificial Intelligence & Image Processing Community in collaboration with the Kapsül Technology Platform. The event featured thought-provoking sessions on artificial intelligence, entrepreneurship, and emerging tech trends, enriching my understanding of the AI landscape.',
     date: 'May 2025', // Confirm this date if necessary
@@ -38,7 +51,7 @@ const events: EventData[] = [
     link: ''
   },
   {
-    id: '3',
+    id: '4',
     title: 'GDG Konya DevFest 2023 & 2024 – Attendee',
     description: 'Attended GDG Konya DevFest in both 2023 and 2024, gaining exposure to the latest in Google technologies, web and mobile development, cloud solutions, and AI innovations. The events featured a dynamic mix of keynote speakers, hands-on sessions, and networking opportunities with the local developer community.',
     date: 'November 2023 & December 2024', // Update if more accurate dates are known

@@ -6,10 +6,6 @@ A modern, responsive portfolio website showcasing my work as a Full-Stack Softwa
 
 Visit my portfolio: [hakangok.tech](https://www.hakangok.tech/)
 
-# Project
-
-[![Video preview](https://github.com/user-attachments/assets/38a1caeb-38f0-467a-bec0-0389a17e5234)](https://www.youtube.com/watch?v=912aHgSuHA8)
-
 ## ✨ Features
 
 - 🌓 Dark/Light mode

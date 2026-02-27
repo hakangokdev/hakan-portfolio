@@ -22,10 +22,11 @@ const Navbar = ({ darkMode, toggleDarkMode }: NavbarProps) => {
 
   const navItems = [
     { label: 'About', href: '#about' },
+    { label: 'Featured', href: '#featured-projects' },
+    { label: 'Projects', href: '#projects' },
     { label: 'Skills', href: '#skills' },
     { label: 'Events', href: '#events' },
     { label: 'Publications', href: '#publications' },
-    { label: 'Projects', href: '#projects' },
     { label: 'Education', href: '#education' },
     { label: 'Contact', href: '#contact' },
   ];

@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer';
 import Events from './components/sections/Events';
 import Education from './components/sections/Education';
 import Projects from './components/sections/Projects';
+import FeaturedProjects from './components/sections/FeaturedProjects';
 import SEOWrapper from './components/SEO/SEOWrapper';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <main>
             <Hero />
             <About />
+            <FeaturedProjects />
             <Projects />
             <Skills />
             <Events />
